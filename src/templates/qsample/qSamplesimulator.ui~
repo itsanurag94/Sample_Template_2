@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QsampleSimulator</class>
- <widget class="QWidget" name="QsampleSimulator">
+ <class>QuizSimulator</class>
+ <widget class="QWidget" name="QuizSimulator">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -33,7 +33,7 @@
        <item>
         <widget class="QLabel" name="m_lblHeading_2">
          <property name="text">
-          <string notr="true">&lt;span style=&quot; font-size:18pt;&quot;&gt;Qsample&lt;/span&gt;</string>
+          <string notr="true">&lt;span style=&quot; font-size:18pt;&quot;&gt;Quiz&lt;/span&gt;</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -144,7 +144,7 @@
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>You have completed the qsample</string>
+          <string>You have completed the quiz</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>

@@ -28,48 +28,53 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef QSAMPLESIMULATOR_H
-#define QSAMPLESIMULATOR_H
+#include "templates/qsample/qsamplequestion.h"
 
-#include "core/templatesimulator.h"
-
-#include "ui_qSamplesimulator.h"
+#include <QStringList>
 
 
-namespace Ui {
-  class QSampleSimulator;
+QsampleQuestion::QsampleQuestion() {
+  m_answers = QStringList();
+  m_answers << QString() << QString() << QString() << QString();
 }
 
-class TemplateCore;
-class QLabel;
-class QPushButton;
-class QRadioButton;
+QsampleQuestion::~QsampleQuestion() {
+}
 
-/// \brief Simulator for QSample template.
-/// \ingroup template-qSample
-class QSampleSimulator : public TemplateSimulator {
-    Q_OBJECT
+int QsampleQuestion::correctAnswer() const {
+  return m_correctAnswer;
+}
 
-  public:
-    // Constructors and destructors.
-    explicit QSampleSimulator(TemplateCore *core, QWidget *parent = 0);
-    virtual ~QSampleSimulator();
+void QsampleQuestion::setCorrectAnswer(int correctAnswer) {
+  m_correctAnswer = correctAnswer;
+}
 
-  public slots:
-    bool startSimulation();
-    bool stopSimulation();
-    bool goBack();
+void QsampleQuestion::setAnswer(int index, const QString &answer) {
+  if (index >= 0 && index < 2) {
+    m_answers.replace(index, answer);
+  }
+}
 
-  private slots:
-    void start();
-    void restart();
-    void exit();
+QString QsampleQuestion::answerOne() const {
+  return m_answers.at(0);
+}
 
-    void prepareSummary();
-    void questionSubmitted();
+QString QsampleQuestion::answerTwo() const {
+  return m_answers.at(1);
+}
 
-  private:
-    Ui::QSampleSimulator *m_ui;
-};
+//QString QsampleQuestion::answerThree() const {
+//  return m_answers.at(2);
+//}
 
-#endif // QSampleSIMULATOR_H
+//QString QsampleQuestion::answerFour() const {
+//  return m_answers.at(3);
+//}
+
+QString QsampleQuestion::question() const {
+  return m_question;
+}
+
+void QsampleQuestion::setQuestion(const QString &question) {
+  m_question = question;
+}

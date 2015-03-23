@@ -5,6 +5,7 @@
 
 #include <QStringList>
 
+
 /// \brief Container for one question.
 /// \ingroup template-qsample
 class QsampleQuestion {

@@ -1,7 +1,37 @@
-#include "templates/qsample/qsampleeditor.h"
+/*
+  Copyright (c) 2012, BuildmLearn Contributors listed at http://buildmlearn.org/people/
+  All rights reserved.
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions are met:
+
+  * Redistributions of source code must retain the above copyright notice, this
+    list of conditions and the following disclaimer.
+
+  * Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
+
+  * Neither the name of the BuildmLearn nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
+#include "templates/qSample/qSampleeditor.h"
 
 #include "miscellaneous/iconfactory.h"
-#include "templates/qsample/qsamplequestion.h"
+#include "templates/qSample/qSamplequestion.h"
 #include "core/templatefactory.h"
 #include "core/templatecore.h"
 #include "core/templateentrypoint.h"
@@ -14,8 +44,8 @@
 #include <QDomAttr>
 
 
-QsampleEditor::QsampleEditor(TemplateCore *core, QWidget *parent)
-  : TemplateEditor(core, parent), m_ui(new Ui::QsampleEditor) {
+QSampleEditor::QSampleEditor(TemplateCore *core, QWidget *parent)
+  : TemplateEditor(core, parent), m_ui(new Ui::QSampleEditor) {
   m_ui->setupUi(this);
 
   // Set validators.
@@ -26,7 +56,7 @@ QsampleEditor::QsampleEditor(TemplateCore *core, QWidget *parent)
   author_validator->setRegExp(QRegExp(".{,50}"));
   title_validator->setRegExp(QRegExp(".{,100}"));
   option_validator->setRegExp(QRegExp(".{,60}"));
- // m_ui->m_txtQuestion->lineEdit->setValidator(question_validator); //Change Done
+
   m_ui->m_txtAuthor->lineEdit()->setValidator(author_validator);
   m_ui->m_txtName->lineEdit()->setValidator(title_validator);
   m_ui->m_txtAnswerOne->setValidator(option_validator);
@@ -35,8 +65,7 @@ QsampleEditor::QsampleEditor(TemplateCore *core, QWidget *parent)
 
   // Set tab order.
   QList<QWidget*> tab_order_widgets;
-  tab_order_widgets << m_ui->m_txtQuestion->lineEdit()<<              //Change Done
-  		       m_ui->m_txtQuestion << m_ui->m_btnAnswerOne << m_ui->m_txtAnswerOne <<
+  tab_order_widgets << m_ui->m_txtQuestion << m_ui->m_btnAnswerOne << m_ui->m_txtAnswerOne <<
                        m_ui->m_btnAnswerTwo << m_ui->m_txtAnswerTwo <<
                        m_ui->m_txtAuthor->lineEdit() << m_ui->m_txtName->lineEdit() <<
                        m_ui->m_listQuestions << m_ui->m_btnQuestionAdd << m_ui->m_btnQuestionRemove <<     //2 tab
@@ -47,11 +76,9 @@ QsampleEditor::QsampleEditor(TemplateCore *core, QWidget *parent)
   }
 
   m_ui->m_txtNumberOfQuestions->lineEdit()->setEnabled(false);
-  
-  //m_ui->m_lblPictureFile->label()->setWordWrap(true);
+
   IconFactory *factory = IconFactory::instance();
 
- //  m_ui->m_lblPictureFile->setStatus(WidgetWithStatus::Error, QString(), tr("No picture selected"));
   m_ui->m_txtAuthor->lineEdit()->setPlaceholderText(tr("Who is this cool fellow"));
   m_ui->m_txtName->lineEdit()->setPlaceholderText(tr("What's your cool stuff name"));
 
@@ -69,7 +96,7 @@ QsampleEditor::QsampleEditor(TemplateCore *core, QWidget *parent)
   m_ui->m_btnAnswerOne->setIcon(m_iconNo);
   m_ui->m_btnAnswerTwo->setIcon(m_iconNo);
 
-//Update Author and Qsample name
+//Update Author and QSample name
   connect(m_ui->m_txtAuthor->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(updateAuthorStatus()));
   connect(m_ui->m_txtName->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(updateNameStatus()));
 
@@ -94,39 +121,39 @@ QsampleEditor::QsampleEditor(TemplateCore *core, QWidget *parent)
   updateQuestionCount();
   checkName();
   checkAuthor();
-  qRegisterMetaType<QsampleQuestion>("Do or Die");
+  qRegisterMetaType<QSampleQuestion>("Do or Die");
 }
 
-QsampleEditor::~QsampleEditor() {
+QSampleEditor::~QSampleEditor() {
   qDebug("Your time and game is up!!.");
 
   delete m_ui;
 }
 
-QList<QsampleQuestion> QsampleEditor::activeQuestions() const {
-  QList<QsampleQuestion> questions;
+QList<QSampleQuestion> QSampleEditor::activeQuestions() const {
+  QList<QSampleQuestion> questions;
 
 
 //Update number of questions count
   for (int i = 0; i < m_ui->m_listQuestions->count(); i++) {
-    questions.append(m_ui->m_listQuestions->item(i)->data(Qt::UserRole).value<QsampleQuestion>());
+    questions.append(m_ui->m_listQuestions->item(i)->data(Qt::UserRole).value<QSampleQuestion>());
   }
 
   return questions;
 }
 
 //Save project name
-QString QsampleEditor::projectName() {
+QString QSampleEditor::projectName() {
   return m_ui->m_txtName->lineEdit()->text();
 }
 
 //Save author's name
-QString QsampleEditor::authorName() {
+QString QSampleEditor::authorName() {
   return m_ui->m_txtAuthor->lineEdit()->text();
 }
 
 //Update question count
-void QsampleEditor::updateQuestionCount() {
+void QSampleEditor::updateQuestionCount() {
   m_ui->m_txtNumberOfQuestions->lineEdit()->setText(QString::number(m_ui->m_listQuestions->count()));
 
   if (m_ui->m_listQuestions->count() > 0) {
@@ -138,8 +165,8 @@ void QsampleEditor::updateQuestionCount() {
 }
 
 //Set new question and it's correct answer
-void QsampleEditor::addQuestion(const QString &question, const QStringList &answers, int correct_answer) {
-  QsampleQuestion new_question;
+void QSampleEditor::addQuestion(const QString &question, const QStringList &answers, int correct_answer) {
+  QSampleQuestion new_question;
 
   new_question.setQuestion(question);
   new_question.setCorrectAnswer(correct_answer);
@@ -171,7 +198,7 @@ void QsampleEditor::addQuestion(const QString &question, const QStringList &answ
   updateQuestionCount();
 }
 
-void QsampleEditor::addQuestion() {
+void QSampleEditor::addQuestion() {
   addQuestion(tr("Gujarat's capital is Ahmedabad?"),
               QStringList() << tr("True") << tr("False"),2);
       //        tr("I have seven beasts.") << tr("Cats? Well, we own eleven dogs."),
@@ -182,7 +209,7 @@ void QsampleEditor::addQuestion() {
 }
 
 //Load the question upon opening
-void QsampleEditor::loadQuestion(int index) {
+void QSampleEditor::loadQuestion(int index) {
   m_ui->m_txtQuestion->blockSignals(true);
   m_ui->m_txtAnswerOne->blockSignals(true);
   m_ui->m_txtAnswerTwo->blockSignals(true);
@@ -190,7 +217,7 @@ void QsampleEditor::loadQuestion(int index) {
   m_ui->m_btnAnswerTwo->blockSignals(true);
 
   if (index >= 0) {
-    QsampleQuestion question = m_ui->m_listQuestions->item(index)->data(Qt::UserRole).value<QsampleQuestion>();
+    QSampleQuestion question = m_ui->m_listQuestions->item(index)->data(Qt::UserRole).value<QSampleQuestion>();
 
     m_ui->m_txtQuestion->setText(question.question());
     m_ui->m_txtAnswerOne->setText(question.answerOne());
@@ -217,7 +244,7 @@ void QsampleEditor::loadQuestion(int index) {
   QTimer::singleShot(0, this, SLOT(configureUpDown()));
 }
 
-void QsampleEditor::removeQuestion() {
+void QSampleEditor::removeQuestion() {
   int current_row = m_ui->m_listQuestions->currentRow();
 
   if (current_row >= 0) {
@@ -236,7 +263,7 @@ void QsampleEditor::removeQuestion() {
   emit changed();
 }
 
-void QsampleEditor::saveQuestion() {
+void QSampleEditor::saveQuestion() {
   PlainToolButton *button_sender = dynamic_cast<PlainToolButton*>(sender());
 
   if (button_sender != NULL) {
@@ -276,7 +303,7 @@ void QsampleEditor::saveQuestion() {
 }
 
 //Set the norms for various options
-void QsampleEditor::moveQuestionUp() {
+void QSampleEditor::moveQuestionUp() {
   int index = m_ui->m_listQuestions->currentRow();
 
   m_ui->m_listQuestions->insertItem(index - 1, m_ui->m_listQuestions->takeItem(index));
@@ -285,7 +312,7 @@ void QsampleEditor::moveQuestionUp() {
   emit changed();
 }
 
-void QsampleEditor::moveQuestionDown() {
+void QSampleEditor::moveQuestionDown() {
   int index = m_ui->m_listQuestions->currentRow();
 
   m_ui->m_listQuestions->insertItem(index + 1, m_ui->m_listQuestions->takeItem(index));
@@ -294,7 +321,7 @@ void QsampleEditor::moveQuestionDown() {
   emit changed();
 }
 
-void QsampleEditor::configureUpDown() {
+void QSampleEditor::configureUpDown() {
   if (m_ui->m_listQuestions->count() > 1) {
     int index = m_ui->m_listQuestions->currentRow();
 
@@ -317,48 +344,48 @@ void QsampleEditor::configureUpDown() {
   }
 }
 
-void QsampleEditor::setEditorsEnabled(bool enabled) {
+void QSampleEditor::setEditorsEnabled(bool enabled) {
   m_ui->m_groupQuestionEditor->setEnabled(enabled);
 }
 
-void QsampleEditor::checkName() {
+void QSampleEditor::checkName() {
   if (m_ui->m_txtName->lineEdit()->text().simplified().isEmpty()) {
-    m_ui->m_txtName->setStatus(WidgetWithStatus::Error, tr("Enter the name of the qsample."));
+    m_ui->m_txtName->setStatus(WidgetWithStatus::Error, tr("Enter the name of the qSample."));
   }
   else {
     m_ui->m_txtName->setStatus(WidgetWithStatus::Ok, tr("Name is okay."));
   }
 }
 
-void QsampleEditor::checkAuthor() {
+void QSampleEditor::checkAuthor() {
   if (m_ui->m_txtAuthor->lineEdit()->text().simplified().isEmpty()) {
-    m_ui->m_txtAuthor->setStatus(WidgetWithStatus::Error, tr("Enter the name of the author of the qsample."));
+    m_ui->m_txtAuthor->setStatus(WidgetWithStatus::Error, tr("Enter the name of the author of the qSample."));
   }
   else {
-    m_ui->m_txtAuthor->setStatus(WidgetWithStatus::Ok, tr("Enter the name of the author of the qsample."));
+    m_ui->m_txtAuthor->setStatus(WidgetWithStatus::Ok, tr("Enter the name of the author of the qSample."));
   }
 }
 
-void QsampleEditor::updateNameStatus() {
+void QSampleEditor::updateNameStatus() {
   checkName();
   launch();
   emit changed();
 }
 
-void QsampleEditor::updateAuthorStatus() {
+void QSampleEditor::updateAuthorStatus() {
   checkAuthor();
   launch();
   emit changed();
 }
 
-bool QsampleEditor::canGenerateApplications() {
+bool QSampleEditor::canGenerateApplications() {
   return
       !m_ui->m_txtName->lineEdit()->text().simplified().isEmpty() &&
       !m_ui->m_txtAuthor->lineEdit()->text().simplified().isEmpty() &&
       !activeQuestions().isEmpty();
 }
 
-bool QsampleEditor::loadBundleData(const QString &bundle_data) {
+bool QSampleEditor::loadBundleData(const QString &bundle_data) {
   QDomDocument bundle_document;
   bundle_document.setContent(bundle_data);
 
@@ -397,7 +424,7 @@ bool QsampleEditor::loadBundleData(const QString &bundle_data) {
   return true;
 }
 
-QString QsampleEditor::generateBundleData() {
+QString QSampleEditor::generateBundleData() {
   /*if (!canGenerateApplications()) {
     return QString();
   }*/
@@ -410,7 +437,7 @@ QString QsampleEditor::generateBundleData() {
                                                                                "1");
   FIND_DATA_ELEMENT(data_element, source_document);
 
-  foreach (const QsampleQuestion &question, activeQuestions()) {
+  foreach (const QSampleQuestion &question, activeQuestions()) {
     QDomElement item_element = source_document.createElement("item");
 
     // Fill in details about question.

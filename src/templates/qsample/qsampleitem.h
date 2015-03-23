@@ -63,4 +63,3 @@ class QsampleItem : public QWidget {
 };
 
 #endif // QsampleITEM_H
-

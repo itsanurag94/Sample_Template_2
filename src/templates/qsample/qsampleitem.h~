@@ -28,48 +28,68 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef QSAMPLESIMULATOR_H
-#define QSAMPLESIMULATOR_H
+#ifndef QSAMPLEITEM_H
+#define QSAMPLEITEM_H
 
-#include "core/templatesimulator.h"
+#include <QWidget>
 
-#include "ui_qSamplesimulator.h"
+#include "ui_qsampleitem.h"
+
+#include "templates/qsample/qsamplequestion.h"
 
 
 namespace Ui {
-  class QSampleSimulator;
+  class QsampleItem;
 }
 
-class TemplateCore;
-class QLabel;
-class QPushButton;
-class QRadioButton;
-
-/// \brief Simulator for QSample template.
-/// \ingroup template-qSample
-class QSampleSimulator : public TemplateSimulator {
+/// \brief Widget which represents single question in Qsample.
+/// \ingroup template-qsample
+class QsampleItem : public QWidget {
     Q_OBJECT
 
   public:
-    // Constructors and destructors.
-    explicit QSampleSimulator(TemplateCore *core, QWidget *parent = 0);
-    virtual ~QSampleSimulator();
+    /// \brief Enum containing possible states for widget for the question.
+    enum State {
+      Unanswered,
+      AnsweredCorrectly,
+      AnsweredWrongly
+    };
+
+    // Contructors and destructors.
+    explicit QsampleItem(QWidget *parent = 0);
+    virtual ~QsampleItem();
+
+    /// \brief Sets new question for this widget.
+    /// \param question Question object.
+    /// \param question_number Number of the question.
+    void setQuestion(const QsampleQuestion &question, int question_number, int total_questions);
+
+    /// \brief Access to state of qsample question widget.
+    /// \return Returns the state of qsample question widget.
+    State state() const;
 
   public slots:
-    bool startSimulation();
-    bool stopSimulation();
-    bool goBack();
+    /// \brief Resets widget for the question to its original/default state.
+    void reset();
 
-  private slots:
-    void start();
-    void restart();
-    void exit();
-
-    void prepareSummary();
+  signals:
+    /// \brief Emitted if users clicks "Next" or "Submit"
     void questionSubmitted();
 
+  private slots:
+    void onNextClicked();
+    void onSubmitClicked();
+
   private:
-    Ui::QSampleSimulator *m_ui;
+    void setupButtons();
+    void createConnections();
+    void clearStylesheets();
+
+  private:
+    State m_state;
+    Ui::QsampleItem *m_ui;
+    QsampleQuestion m_question;
+    QList<QRadioButton*> m_answerButtons;
 };
 
-#endif // QSampleSIMULATOR_H
+#endif // QsampleITEM_H

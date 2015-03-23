@@ -29,26 +29,12 @@
     </widget>
    </item>
    <item>
-        <widget class="QLabel" name="m_lblPicture">
-         <property name="frameShape">
-          <enum>QFrame::Box</enum>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignHCenter|Qt::AlignTop</set>
-         </property>
-        </widget>
-   </item>
-   <item>
     <widget class="QLabel" name="m_lblQuestionText">
      <property name="text">
       <string>Question text</string>
      </property>
     </widget>
    </item>
-   
    <item>
     <widget class="QRadioButton" name="m_rbAnswerOne">
      <property name="text">

@@ -53,8 +53,6 @@ class QuizQuestion {
     void setAnswer(int index, const QString &answer);
     QString answerOne() const;
     QString answerTwo() const;
-    QString answerThree() const;
-    QString answerFour() const;
 
     QString question() const;
     void setQuestion(const QString &question);

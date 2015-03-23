@@ -50,7 +50,7 @@ void QuizQuestion::setCorrectAnswer(int correctAnswer) {
 }
 
 void QuizQuestion::setAnswer(int index, const QString &answer) {
-  if (index >= 0 && index < 4) {
+  if (index >= 0 && index < 2) {
     m_answers.replace(index, answer);
   }
 }
@@ -63,13 +63,13 @@ QString QuizQuestion::answerTwo() const {
   return m_answers.at(1);
 }
 
-QString QuizQuestion::answerThree() const {
-  return m_answers.at(2);
-}
+//QString QuizQuestion::answerThree() const {
+//  return m_answers.at(2);
+//}
 
-QString QuizQuestion::answerFour() const {
-  return m_answers.at(3);
-}
+//QString QuizQuestion::answerFour() const {
+//  return m_answers.at(3);
+//}
 
 QString QuizQuestion::question() const {
   return m_question;

@@ -1,16 +1,10 @@
 #include "templates/qsample/qsampleeditor.h"
-#include "templates/qsample/qsamplequestion.h"
-#include "templates/qsample/qsamplecore.h"
-#include "templates/qsample/qsampleentrypoint.h"
 
 #include "miscellaneous/iconfactory.h"
 #include "templates/qsample/qsamplequestion.h"
 #include "core/templatefactory.h"
 #include "core/templatecore.h"
 #include "core/templateentrypoint.h"
-#include "miscellaneous/iconfactory.h"
-#include "miscellaneous/iofactory.h"
-#include "core/templatefactory.h"
 
 #include <QToolTip>
 #include <QTimer>
@@ -18,8 +12,6 @@
 #include <QDomDocument>
 #include <QDomElement>
 #include <QDomAttr>
-#include <QFileDialog>
-
 
 
 QsampleEditor::QsampleEditor(TemplateCore *core, QWidget *parent)
@@ -34,16 +26,16 @@ QsampleEditor::QsampleEditor(TemplateCore *core, QWidget *parent)
   author_validator->setRegExp(QRegExp(".{,50}"));
   title_validator->setRegExp(QRegExp(".{,100}"));
   option_validator->setRegExp(QRegExp(".{,60}"));
- // m_ui->m_txtQuestion->lineEdit()->setValidator(question_validator); //Change Done
+ // m_ui->m_txtQuestion->lineEdit->setValidator(question_validator); //Change Done
   m_ui->m_txtAuthor->lineEdit()->setValidator(author_validator);
   m_ui->m_txtName->lineEdit()->setValidator(title_validator);
   m_ui->m_txtAnswerOne->setValidator(option_validator);
   m_ui->m_txtAnswerTwo->setValidator(option_validator);
   m_ui->m_txtQuestion->setMaxLength(60);
+
   // Set tab order.
   QList<QWidget*> tab_order_widgets;
-  tab_order_widgets << m_ui->m_txtQuestion<< m_ui->m_btnPictureSelect  <<
-  					   m_ui->m_btnAnswerOne << m_ui->m_txtAnswerOne <<
+  tab_order_widgets << m_ui->m_txtQuestion<<m_ui->m_txtQuestion << m_ui->m_btnAnswerOne << m_ui->m_txtAnswerOne <<
                        m_ui->m_btnAnswerTwo << m_ui->m_txtAnswerTwo <<
                        m_ui->m_txtAuthor->lineEdit() << m_ui->m_txtName->lineEdit() <<
                        m_ui->m_listQuestions << m_ui->m_btnQuestionAdd << m_ui->m_btnQuestionRemove <<     //2 tab
@@ -55,10 +47,10 @@ QsampleEditor::QsampleEditor(TemplateCore *core, QWidget *parent)
 
   m_ui->m_txtNumberOfQuestions->lineEdit()->setEnabled(false);
   
-  m_ui->m_lblPictureFile->label()->setWordWrap(true);
+  //m_ui->m_lblPictureFile->label()->setWordWrap(true);
   IconFactory *factory = IconFactory::instance();
 
-  m_ui->m_lblPictureFile->setStatus(WidgetWithStatus::Error, QString(), tr("No picture selected"));
+ //  m_ui->m_lblPictureFile->setStatus(WidgetWithStatus::Error, QString(), tr("No picture selected"));
   m_ui->m_txtAuthor->lineEdit()->setPlaceholderText(tr("Who is this cool fellow"));
   m_ui->m_txtName->lineEdit()->setPlaceholderText(tr("What's your cool stuff name"));
 
@@ -76,7 +68,6 @@ QsampleEditor::QsampleEditor(TemplateCore *core, QWidget *parent)
   m_ui->m_btnAnswerOne->setIcon(m_iconNo);
   m_ui->m_btnAnswerTwo->setIcon(m_iconNo);
 
-  connect(m_ui->m_btnPictureSelect, SIGNAL(clicked()), this, SLOT(selectPicture()));
 //Update Author and Qsample name
   connect(m_ui->m_txtAuthor->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(updateAuthorStatus()));
   connect(m_ui->m_txtName->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(updateNameStatus()));
@@ -99,7 +90,6 @@ QsampleEditor::QsampleEditor(TemplateCore *core, QWidget *parent)
   connect(m_ui->m_btnQuestionDown, SIGNAL(clicked()), this, SLOT(moveQuestionDown()));
 
   setEditorsEnabled(false);
- // qRegisterMetaType<Qsample>("Question");
   updateQuestionCount();
   checkName();
   checkAuthor();
@@ -133,6 +123,7 @@ QString QsampleEditor::projectName() {
 QString QsampleEditor::authorName() {
   return m_ui->m_txtAuthor->lineEdit()->text();
 }
+
 //Update question count
 void QsampleEditor::updateQuestionCount() {
   m_ui->m_txtNumberOfQuestions->lineEdit()->setText(QString::number(m_ui->m_listQuestions->count()));
@@ -146,10 +137,9 @@ void QsampleEditor::updateQuestionCount() {
 }
 
 //Set new question and it's correct answer
-void QsampleEditor::addQuestion(const QString &question, const QStringList &answers, int correct_answer, const QString &picture_path) {
+void QsampleEditor::addQuestion(const QString &question, const QStringList &answers, int correct_answer) {
   QsampleQuestion new_question;
 
-  new_question.setPicturePath(picture_path);
   new_question.setQuestion(question);
   new_question.setCorrectAnswer(correct_answer);
 
@@ -182,9 +172,7 @@ void QsampleEditor::addQuestion(const QString &question, const QStringList &answ
 
 void QsampleEditor::addQuestion() {
   addQuestion(tr("Gujarat's capital is Ahmedabad?"),
-              QStringList() << tr("True") << tr("False"),2, APP_TEMPLATES_PATH + QDir::separator() +
-              core()->entryPoint()->baseFolder() + QDir::separator() +
-              "cat.png");
+              QStringList() << tr("True") << tr("False"),2);
       //        tr("I have seven beasts.") << tr("Cats? Well, we own eleven dogs."),
       //        2);
 
@@ -199,8 +187,6 @@ void QsampleEditor::loadQuestion(int index) {
   m_ui->m_txtAnswerTwo->blockSignals(true);
   m_ui->m_btnAnswerOne->blockSignals(true);
   m_ui->m_btnAnswerTwo->blockSignals(true);
-  m_ui->m_lblPictureFile->label()->blockSignals(true);
-
 
   if (index >= 0) {
     QsampleQuestion question = m_ui->m_listQuestions->item(index)->data(Qt::UserRole).value<QsampleQuestion>();
@@ -210,7 +196,6 @@ void QsampleEditor::loadQuestion(int index) {
    m_ui->m_txtAnswerTwo->setText(question.answerTwo());
     m_ui->m_btnAnswerOne->setIcon(question.correctAnswer() == 0 ? m_iconYes : m_iconNo);
     m_ui->m_btnAnswerTwo->setIcon(question.correctAnswer() == 1 ? m_iconYes : m_iconNo);
-    loadPicture(question.picturePath());
 
     m_activeQuestion = question;
   }
@@ -220,7 +205,6 @@ void QsampleEditor::loadQuestion(int index) {
     m_ui->m_txtAnswerTwo->setText(QString());
     m_ui->m_btnAnswerOne->setIcon(m_iconNo);
     m_ui->m_btnAnswerTwo->setIcon(m_iconNo);
-    loadPicture(QString());
   }
 
   m_ui->m_txtQuestion->blockSignals(false);
@@ -228,8 +212,6 @@ void QsampleEditor::loadQuestion(int index) {
   m_ui->m_txtAnswerTwo->blockSignals(false);
   m_ui->m_btnAnswerOne->blockSignals(false);
   m_ui->m_btnAnswerTwo->blockSignals(false);
-  m_ui->m_lblPictureFile->label()->blockSignals(false);         //Picture
-
 
   QTimer::singleShot(0, this, SLOT(configureUpDown()));
 }
@@ -285,7 +267,6 @@ void QsampleEditor::saveQuestion() {
   m_activeQuestion.setQuestion(m_ui->m_txtQuestion->toPlainText());
   m_activeQuestion.setAnswer(0, m_ui->m_txtAnswerOne->text());
   m_activeQuestion.setAnswer(1, m_ui->m_txtAnswerTwo->text());
-   m_activeQuestion.setPicturePath(m_ui->m_lblPictureFile->label()->toolTip());
 
   m_ui->m_listQuestions->currentItem()->setData(Qt::UserRole, QVariant::fromValue(m_activeQuestion));
   m_ui->m_listQuestions->currentItem()->setText(m_activeQuestion.question());
@@ -357,23 +338,6 @@ void QsampleEditor::checkAuthor() {
   }
 }
 
-void QsampleEditor::loadPicture(const QString& picture_path) {
-  if (!picture_path.isEmpty()) {
-    m_ui->m_lblPictureView->setPixmap(QPixmap(picture_path).scaled(m_ui->m_lblPictureView->size(),
-                                                                   Qt::KeepAspectRatio));
-    m_ui->m_lblPictureFile->setStatus(WidgetWithStatus::Ok,
-                                      tr("Picture is selected."),
-                                      tr("Picture is selected."));
-  }
-  else {
-    m_ui->m_lblPictureView->setPixmap(QPixmap());
-    m_ui->m_lblPictureFile->setStatus(WidgetWithStatus::Error,
-                                      tr("Picture is not selected."),
-                                      tr("No picture is selected."));
-  }
-  m_ui->m_lblPictureFile->label()->setToolTip(QDir::toNativeSeparators(picture_path));
-}
-
 void QsampleEditor::updateNameStatus() {
   checkName();
   launch();
@@ -406,28 +370,19 @@ bool QsampleEditor::loadBundleData(const QString &bundle_data) {
       QString question = item.namedItem("question").toElement().text();
       int correct_answer = item.namedItem("answer").toElement().text().toInt();
       QDomNodeList answer_items = item.toElement().elementsByTagName("option");
- 	  QString image_data = item.namedItem("image").toElement().text();            //Picture
       QList<QString> answers;
 
       for (int j = 0; j < answer_items.size(); j++) {
         answers.append(answer_items.at(j).toElement().text());
       }
-      QString output_directory = qApp->templateManager()->tempDirectory();
-       QString target_image_file = output_directory +
-                                    QString("/image_%1.png").arg(i);
 
-        if (IOFactory::base64ToFile(image_data, target_image_file)) {
-          // Picture from the item was saved to disk.
-          addQuestion(question, answers, correct_answer, target_image_file);
-        }
-    
-    //  if (question.isEmpty() || answers.size() < 2 || answers.size() > 4) {
+      if (question.isEmpty() || answers.size() < 2 || answers.size() > 4) {
         // TODO: error
-    //    continue;
-     // }
-    //  else {
-    //    addQuestion(question, answers, correct_answer);
-     // }
+        continue;
+      }
+      else {
+        addQuestion(question, answers, correct_answer);
+      }
     }
     else {
       continue;
@@ -442,7 +397,10 @@ bool QsampleEditor::loadBundleData(const QString &bundle_data) {
 }
 
 QString QsampleEditor::generateBundleData() {
- 
+  /*if (!canGenerateApplications()) {
+    return QString();
+  }*/
+
   QDomDocument source_document = qApp->templateManager()->generateBundleHeader(core()->entryPoint()->typeIndentifier(),
                                                                                m_ui->m_txtAuthor->lineEdit()->text(),
                                                                                QString(),
@@ -459,21 +417,12 @@ QString QsampleEditor::generateBundleData() {
     QDomElement answer_one_element = source_document.createElement("option");
     QDomElement answer_two_element = source_document.createElement("option");
     QDomElement answer_number_element = source_document.createElement("answer");
-    QDomElement image_element = source_document.createElement("image");       //Picture
-
 
     question_element.appendChild(source_document.createTextNode(question.question()));
     answer_one_element.appendChild(source_document.createTextNode(question.answerOne()));
     answer_two_element.appendChild(source_document.createTextNode(question.answerTwo()));
     answer_number_element.appendChild(source_document.createTextNode(QString::number(question.correctAnswer())));
 
-    QByteArray picture_encoded = IOFactory::fileToBase64(question.picturePath());           //Picture
-
-    if (picture_encoded.isEmpty() || picture_encoded.isNull()) {
-      return QString();
-    }
-
-    image_element.appendChild(source_document.createTextNode(QString::fromUtf8(picture_encoded)));  
     item_element.appendChild(question_element);
     item_element.appendChild(answer_one_element);
     item_element.appendChild(answer_two_element);
@@ -483,15 +432,4 @@ QString QsampleEditor::generateBundleData() {
   }
 
   return source_document.toString(XML_BUNDLE_INDENTATION);
-}
-void QsampleEditor::selectPicture() {
-  QString selected_picture = QFileDialog::getOpenFileName(this, tr("Select picture for question"),
-                                                          m_ui->m_lblPictureFile->label()->toolTip(),
-                                                          tr("Images (*.gif *.jpg *.png)"),
-                                                          0);
-
-  if (!selected_picture.isEmpty()) {
-    loadPicture(selected_picture);
-    saveQuestion();
-  }
 }

@@ -29,10 +29,10 @@
 */
 
 
-#include "templates/quiz/quizcore.h"
+#include "templates/qSample/qSamplecore.h"
 
-#include "templates/quiz/quizeditor.h"
-#include "templates/quiz/quizsimulator.h"
+#include "templates/qSample/qSampleeditor.h"
+#include "templates/qSample/qSamplesimulator.h"
 #include "miscellaneous/application.h"
 #include "miscellaneous/iofactory.h"
 #include "core/templatefactory.h"
@@ -47,17 +47,17 @@
 #include <QProcess>
 
 
-QuizCore::QuizCore(TemplateEntryPoint *entry_point, QObject *parent)
+QSampleCore::QSampleCore(TemplateEntryPoint *entry_point, QObject *parent)
   : TemplateCore(entry_point, parent) {
-  m_editor = new QuizEditor(this);
-  m_simulator = new QuizSimulator(this);
+  m_editor = new QSampleEditor(this);
+  m_simulator = new QSampleSimulator(this);
 }
 
-QuizCore::~QuizCore() {
-  qDebug("Destroying QuizCore instance.");
+QSampleCore::~QSampleCore() {
+  qDebug("Destroying QSampleCore instance.");
 }
 
-TemplateCore::GenerationResult QuizCore::generateMobileApplication(const QString &input_apk_file, QString &output_file) {
+TemplateCore::GenerationResult QSampleCore::generateMobileApplication(const QString &input_apk_file, QString &output_file) {
   emit generationProgress(5, tr("Preparing workspace..."));
 
   qApp->templateManager()->generator()->cleanWorkspace();
@@ -65,9 +65,9 @@ TemplateCore::GenerationResult QuizCore::generateMobileApplication(const QString
   emit generationProgress(10, tr("Extracting raw data from editor..."));
 
   // We need data which will be imported into apk/zip file.
-  QString quiz_data = editor()->generateBundleData();
+  QString qSample_data = editor()->generateBundleData();
 
-  if (quiz_data.isEmpty()) {
+  if (qSample_data.isEmpty()) {
     // No date received, this is big problem.
     return BundleProblem;
   }
@@ -83,13 +83,13 @@ TemplateCore::GenerationResult QuizCore::generateMobileApplication(const QString
   temp_directory.mkdir(APP_LOW_NAME);
   base_directory.mkdir("assets");
 
-  QFile index_file(base_folder + "/assets/quiz_content.xml");
+  QFile index_file(base_folder + "/assets/qSample_content.xml");
   index_file.open(QIODevice::WriteOnly | QIODevice::Text);
 
-  emit generationProgress(30, tr("Writting quiz data into file..."));
+  emit generationProgress(30, tr("Writting qSample data into file..."));
 
   QTextStream out(&index_file);
-  out << quiz_data;
+  out << qSample_data;
 
   out.flush();
   index_file.close();
@@ -114,7 +114,7 @@ TemplateCore::GenerationResult QuizCore::generateMobileApplication(const QString
   zip.waitForFinished();
 
   if (zip.exitCode() != EXIT_STATUS_ZIP_NORMAL) {
-    // Error during inserting quiz data via zip.
+    // Error during inserting qSample data via zip.
     qApp->templateManager()->generator()->cleanWorkspace();
     return ZipProblem;
   }
@@ -153,10 +153,10 @@ TemplateCore::GenerationResult QuizCore::generateMobileApplication(const QString
   return Success;
 }
 
-QuizEditor *QuizCore::quizEditor() {
-  return static_cast<QuizEditor*>(m_editor);
+QSampleEditor *QSampleCore::qSampleEditor() {
+  return static_cast<QSampleEditor*>(m_editor);
 }
 
-QuizSimulator *QuizCore::quizSimulator() {
-  return static_cast<QuizSimulator*>(m_simulator);
+QSampleSimulator *QSampleCore::qSampleSimulator() {
+  return static_cast<QSampleSimulator*>(m_simulator);
 }

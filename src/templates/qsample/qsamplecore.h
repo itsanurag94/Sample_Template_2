@@ -30,4 +30,3 @@ class QsampleCore : public TemplateCore {
 };
 
 #endif // QsampleCORE_H
-

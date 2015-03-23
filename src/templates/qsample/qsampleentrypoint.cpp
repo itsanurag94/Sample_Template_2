@@ -11,7 +11,7 @@ QsampleEntryPoint::QsampleEntryPoint(TemplateFactory *parent) : TemplateEntryPoi
   m_description = "Choose this template to create Qsample-like applications.";
   m_humanName = "Qsample";
   m_name = "qsample";
-  m_thumbnailImage = "thumbnail.png";
+  m_thumbnailImage = "/home/anurag/Pictures/BuildmLearn-Toolkit/resources/templates/qsample/thumbnail.png";
   m_typeIndentifier = "QsampleTemplate";
 //  m_mobileApplicationApkFile = "QsampleTemplateApp.apk";
 }

@@ -1,5 +1,4 @@
 #include "templates/qsample/qsamplequestion.h"
-//#include "templates/qsample/qsampleeditor.h"
 
 #include <QStringList>
 
@@ -10,14 +9,6 @@ QsampleQuestion::QsampleQuestion() {
 }
 
 QsampleQuestion::~QsampleQuestion() {
-}
-
-QString QsampleQuestion::picturePath() const {
-    return m_picturePath;
-}
-
-void QsampleQuestion::setPicturePath(const QString &picture_path) {
-    m_picturePath = picture_path;
 }
 
 int QsampleQuestion::correctAnswer() const {
@@ -57,4 +48,3 @@ QString QsampleQuestion::question() const {
 void QsampleQuestion::setQuestion(const QString &question) {
   m_question = question;
 }
-

@@ -21,4 +21,3 @@ class QsampleEntryPoint : public TemplateEntryPoint {
 };
 
 #endif // QsampleENTRYPOINT_H
-

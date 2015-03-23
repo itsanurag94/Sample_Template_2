@@ -43,4 +43,3 @@ class QsampleSimulator : public TemplateSimulator {
 };
 
 #endif // QsampleSIMULATOR_H
-

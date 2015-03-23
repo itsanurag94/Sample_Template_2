@@ -28,48 +28,72 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef QSAMPLESIMULATOR_H
-#define QSAMPLESIMULATOR_H
+#ifndef QsampleEDITOR_H
+#define QsampleEDITOR_H
 
-#include "core/templatesimulator.h"
+#include "core/templateeditor.h"
 
-#include "ui_qSamplesimulator.h"
+#include "ui_qsampleeditor.h"
+#include "templates/qsample/qsamplequestion.h"
+
+#include <QIcon>
 
 
 namespace Ui {
-  class QSampleSimulator;
+  class QsampleEditor;
 }
 
-class TemplateCore;
-class QLabel;
-class QPushButton;
-class QRadioButton;
+class QsampleSimulator;
+class QShowEvent;
 
-/// \brief Simulator for QSample template.
-/// \ingroup template-qSample
-class QSampleSimulator : public TemplateSimulator {
+/// \brief Editor for Qsample.
+/// \ingroup template-qsample
+class QsampleEditor : public TemplateEditor {
     Q_OBJECT
+
+    friend class QsampleSimulator;
+    friend class QsampleCore;
 
   public:
     // Constructors and destructors.
-    explicit QSampleSimulator(TemplateCore *core, QWidget *parent = 0);
-    virtual ~QSampleSimulator();
+    explicit QsampleEditor(TemplateCore *core, QWidget *parent = 0);
+    virtual ~QsampleEditor();
 
-  public slots:
-    bool startSimulation();
-    bool stopSimulation();
-    bool goBack();
+    QString generateBundleData();
+    bool canGenerateApplications();
+    bool loadBundleData(const QString &bundle_data);
+
+    /// \brief Access to list of added questions.
+    /// \return Returns list of added questions.
+    QList<QsampleQuestion> activeQuestions() const;
+
+    QString projectName();
+    QString authorName();
 
   private slots:
-    void start();
-    void restart();
-    void exit();
+    void updateQuestionCount();
+    void addQuestion(const QString &question, const QStringList &answers, int correct_answer);
+    void addQuestion();
+    void loadQuestion(int index);
+    void removeQuestion();
+    void saveQuestion();
+    void moveQuestionUp();
+    void moveQuestionDown();
 
-    void prepareSummary();
-    void questionSubmitted();
+    void configureUpDown();
+    void setEditorsEnabled(bool enabled);
+
+    void checkName();
+    void checkAuthor();
+
+    void updateNameStatus();
+    void updateAuthorStatus();
 
   private:
-    Ui::QSampleSimulator *m_ui;
+    QsampleQuestion m_activeQuestion;
+    Ui::QsampleEditor *m_ui;
+    QIcon m_iconYes;
+    QIcon m_iconNo;
 };
 
-#endif // QSampleSIMULATOR_H
+#endif // QsampleEDITOR_H

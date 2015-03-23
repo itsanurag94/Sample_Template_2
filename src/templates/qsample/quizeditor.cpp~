@@ -61,20 +61,16 @@ QuizEditor::QuizEditor(TemplateCore *core, QWidget *parent)
   m_ui->m_txtName->lineEdit()->setValidator(title_validator);
   m_ui->m_txtAnswerOne->setValidator(option_validator);
   m_ui->m_txtAnswerTwo->setValidator(option_validator);
-  m_ui->m_txtAnswerThree->setValidator(option_validator);
-  m_ui->m_txtAnswerFour->setValidator(option_validator);
-  m_ui->m_txtQuestion->setMaxLength(160);
+  m_ui->m_txtQuestion->setMaxLength(60);
 
   // Set tab order.
   QList<QWidget*> tab_order_widgets;
   tab_order_widgets << m_ui->m_txtQuestion << m_ui->m_btnAnswerOne << m_ui->m_txtAnswerOne <<
                        m_ui->m_btnAnswerTwo << m_ui->m_txtAnswerTwo <<
-                       m_ui->m_btnAnswerThree << m_ui->m_txtAnswerThree <<
-                       m_ui->m_btnAnswerFour << m_ui->m_txtAnswerFour <<
                        m_ui->m_txtAuthor->lineEdit() << m_ui->m_txtName->lineEdit() <<
-                       m_ui->m_listQuestions << m_ui->m_btnQuestionAdd << m_ui->m_btnQuestionRemove <<
+                       m_ui->m_listQuestions << m_ui->m_btnQuestionAdd << m_ui->m_btnQuestionRemove <<     //2 tab
                        m_ui->m_btnQuestionUp << m_ui->m_btnQuestionDown;
-
+//Set order
   for (int i = 1; i < tab_order_widgets.size(); i++) {
     setTabOrder(tab_order_widgets.at(i - 1), tab_order_widgets.at(i));
   }
@@ -83,13 +79,11 @@ QuizEditor::QuizEditor(TemplateCore *core, QWidget *parent)
 
   IconFactory *factory = IconFactory::instance();
 
-  m_ui->m_txtAuthor->lineEdit()->setPlaceholderText(tr("Author of this quiz"));
-  m_ui->m_txtName->lineEdit()->setPlaceholderText(tr("Name of this quiz"));
+  m_ui->m_txtAuthor->lineEdit()->setPlaceholderText(tr("Who is this cool fellow"));
+  m_ui->m_txtName->lineEdit()->setPlaceholderText(tr("What's your cool stuff name"));
 
   m_ui->m_btnAnswerOne->setProperty("id", 0);
   m_ui->m_btnAnswerTwo->setProperty("id", 1);
-  m_ui->m_btnAnswerThree->setProperty("id", 2);
-  m_ui->m_btnAnswerFour->setProperty("id", 3);
 
   m_ui->m_btnQuestionAdd->setIcon(factory->fromTheme("item-add"));
   m_ui->m_btnQuestionRemove->setIcon(factory->fromTheme("item-remove"));
@@ -101,25 +95,23 @@ QuizEditor::QuizEditor(TemplateCore *core, QWidget *parent)
 
   m_ui->m_btnAnswerOne->setIcon(m_iconNo);
   m_ui->m_btnAnswerTwo->setIcon(m_iconNo);
-  m_ui->m_btnAnswerThree->setIcon(m_iconNo);
-  m_ui->m_btnAnswerFour->setIcon(m_iconNo);
 
+//Update Author and Quiz name
   connect(m_ui->m_txtAuthor->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(updateAuthorStatus()));
   connect(m_ui->m_txtName->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(updateNameStatus()));
 
+//Signals to the button
   connect(m_ui->m_btnQuestionAdd, SIGNAL(clicked()), this, SLOT(addQuestion()));
   connect(m_ui->m_btnQuestionRemove, SIGNAL(clicked()), this, SLOT(removeQuestion()));
   connect(m_ui->m_listQuestions, SIGNAL(currentRowChanged(int)), this, SLOT(loadQuestion(int)));
 
   connect(m_ui->m_btnAnswerOne, SIGNAL(clicked()), this, SLOT(saveQuestion()));
   connect(m_ui->m_btnAnswerTwo, SIGNAL(clicked()), this, SLOT(saveQuestion()));
-  connect(m_ui->m_btnAnswerThree, SIGNAL(clicked()), this, SLOT(saveQuestion()));
-  connect(m_ui->m_btnAnswerFour, SIGNAL(clicked()), this, SLOT(saveQuestion()));
 
+
+//Save the answer of the question
   connect(m_ui->m_txtAnswerOne, SIGNAL(textEdited(QString)), this, SLOT(saveQuestion()));
   connect(m_ui->m_txtAnswerTwo, SIGNAL(textEdited(QString)), this, SLOT(saveQuestion()));
-  connect(m_ui->m_txtAnswerThree, SIGNAL(textEdited(QString)), this, SLOT(saveQuestion()));
-  connect(m_ui->m_txtAnswerFour, SIGNAL(textEdited(QString)), this, SLOT(saveQuestion()));
   connect(m_ui->m_txtQuestion, SIGNAL(textChanged()), this, SLOT(saveQuestion()));
 
   connect(m_ui->m_btnQuestionUp, SIGNAL(clicked()), this, SLOT(moveQuestionUp()));
@@ -129,11 +121,11 @@ QuizEditor::QuizEditor(TemplateCore *core, QWidget *parent)
   updateQuestionCount();
   checkName();
   checkAuthor();
-  qRegisterMetaType<QuizQuestion>("QuizQuestion");
+  qRegisterMetaType<QuizQuestion>("Do or Die");
 }
 
 QuizEditor::~QuizEditor() {
-  qDebug("Destroying QuizEditor instance.");
+  qDebug("Your time and game is up!!.");
 
   delete m_ui;
 }
@@ -141,6 +133,8 @@ QuizEditor::~QuizEditor() {
 QList<QuizQuestion> QuizEditor::activeQuestions() const {
   QList<QuizQuestion> questions;
 
+
+//Update number of questions count
   for (int i = 0; i < m_ui->m_listQuestions->count(); i++) {
     questions.append(m_ui->m_listQuestions->item(i)->data(Qt::UserRole).value<QuizQuestion>());
   }
@@ -148,25 +142,29 @@ QList<QuizQuestion> QuizEditor::activeQuestions() const {
   return questions;
 }
 
+//Save project name
 QString QuizEditor::projectName() {
   return m_ui->m_txtName->lineEdit()->text();
 }
 
+//Save author's name
 QString QuizEditor::authorName() {
   return m_ui->m_txtAuthor->lineEdit()->text();
 }
 
+//Update question count
 void QuizEditor::updateQuestionCount() {
   m_ui->m_txtNumberOfQuestions->lineEdit()->setText(QString::number(m_ui->m_listQuestions->count()));
 
   if (m_ui->m_listQuestions->count() > 0) {
-    m_ui->m_txtNumberOfQuestions->setStatus(WidgetWithStatus::Ok, tr("Quiz contains at least one question."));
+    m_ui->m_txtNumberOfQuestions->setStatus(WidgetWithStatus::Ok, tr("You have still got chances to survive."));
   }
   else {
-    m_ui->m_txtNumberOfQuestions->setStatus(WidgetWithStatus::Error, tr("Quiz does not contain any questions."));
+    m_ui->m_txtNumberOfQuestions->setStatus(WidgetWithStatus::Error, tr("There ain't any chances for you."));
   }
 }
 
+//Set new question and it's correct answer
 void QuizEditor::addQuestion(const QString &question, const QStringList &answers, int correct_answer) {
   QuizQuestion new_question;
 
@@ -201,38 +199,31 @@ void QuizEditor::addQuestion(const QString &question, const QStringList &answers
 }
 
 void QuizEditor::addQuestion() {
-  addQuestion(tr("How many cats do you have?"),
-              QStringList() << tr("I hate cats!") << tr("I have two nice kittens.") <<
-              tr("I have seven beasts.") << tr("Cats? Well, we own eleven dogs."),
-              2);
+  addQuestion(tr("Gujarat's capital is Ahmedabad?"),
+              QStringList() << tr("True") << tr("False"),2);
+      //        tr("I have seven beasts.") << tr("Cats? Well, we own eleven dogs."),
+      //        2);
 
   launch();
   emit changed();
 }
 
+//Load the question upon opening
 void QuizEditor::loadQuestion(int index) {
   m_ui->m_txtQuestion->blockSignals(true);
   m_ui->m_txtAnswerOne->blockSignals(true);
   m_ui->m_txtAnswerTwo->blockSignals(true);
-  m_ui->m_txtAnswerThree->blockSignals(true);
-  m_ui->m_txtAnswerFour->blockSignals(true);
   m_ui->m_btnAnswerOne->blockSignals(true);
   m_ui->m_btnAnswerTwo->blockSignals(true);
-  m_ui->m_btnAnswerThree->blockSignals(true);
-  m_ui->m_btnAnswerFour->blockSignals(true);
 
   if (index >= 0) {
     QuizQuestion question = m_ui->m_listQuestions->item(index)->data(Qt::UserRole).value<QuizQuestion>();
 
     m_ui->m_txtQuestion->setText(question.question());
     m_ui->m_txtAnswerOne->setText(question.answerOne());
-    m_ui->m_txtAnswerTwo->setText(question.answerTwo());
-    m_ui->m_txtAnswerThree->setText(question.answerThree());
-    m_ui->m_txtAnswerFour->setText(question.answerFour());
+   m_ui->m_txtAnswerTwo->setText(question.answerTwo());
     m_ui->m_btnAnswerOne->setIcon(question.correctAnswer() == 0 ? m_iconYes : m_iconNo);
     m_ui->m_btnAnswerTwo->setIcon(question.correctAnswer() == 1 ? m_iconYes : m_iconNo);
-    m_ui->m_btnAnswerThree->setIcon(question.correctAnswer() == 2 ? m_iconYes : m_iconNo);
-    m_ui->m_btnAnswerFour->setIcon(question.correctAnswer() == 3 ? m_iconYes : m_iconNo);
 
     m_activeQuestion = question;
   }
@@ -240,23 +231,15 @@ void QuizEditor::loadQuestion(int index) {
     m_ui->m_txtQuestion->setText(QString());
     m_ui->m_txtAnswerOne->setText(QString());
     m_ui->m_txtAnswerTwo->setText(QString());
-    m_ui->m_txtAnswerThree->setText(QString());
-    m_ui->m_txtAnswerFour->setText(QString());
     m_ui->m_btnAnswerOne->setIcon(m_iconNo);
     m_ui->m_btnAnswerTwo->setIcon(m_iconNo);
-    m_ui->m_btnAnswerThree->setIcon(m_iconNo);
-    m_ui->m_btnAnswerFour->setIcon(m_iconNo);
   }
 
   m_ui->m_txtQuestion->blockSignals(false);
   m_ui->m_txtAnswerOne->blockSignals(false);
   m_ui->m_txtAnswerTwo->blockSignals(false);
-  m_ui->m_txtAnswerThree->blockSignals(false);
-  m_ui->m_txtAnswerFour->blockSignals(false);
   m_ui->m_btnAnswerOne->blockSignals(false);
   m_ui->m_btnAnswerTwo->blockSignals(false);
-  m_ui->m_btnAnswerThree->blockSignals(false);
-  m_ui->m_btnAnswerFour->blockSignals(false);
 
   QTimer::singleShot(0, this, SLOT(configureUpDown()));
 }
@@ -292,36 +275,19 @@ void QuizEditor::saveQuestion() {
       case 0:
         m_ui->m_btnAnswerOne->setIcon(m_iconYes);
         m_ui->m_btnAnswerTwo->setIcon(m_iconNo);
-        m_ui->m_btnAnswerThree->setIcon(m_iconNo);
-        m_ui->m_btnAnswerFour->setIcon(m_iconNo);
         break;
 
       case 1:
         m_ui->m_btnAnswerOne->setIcon(m_iconNo);
         m_ui->m_btnAnswerTwo->setIcon(m_iconYes);
-        m_ui->m_btnAnswerThree->setIcon(m_iconNo);
-        m_ui->m_btnAnswerFour->setIcon(m_iconNo);
         break;
 
-      case 2:
-        m_ui->m_btnAnswerOne->setIcon(m_iconNo);
-        m_ui->m_btnAnswerTwo->setIcon(m_iconNo);
-        m_ui->m_btnAnswerThree->setIcon(m_iconYes);
-        m_ui->m_btnAnswerFour->setIcon(m_iconNo);
-        break;
-
-      case 3:
-        m_ui->m_btnAnswerOne->setIcon(m_iconNo);
-        m_ui->m_btnAnswerTwo->setIcon(m_iconNo);
-        m_ui->m_btnAnswerThree->setIcon(m_iconNo);
-        m_ui->m_btnAnswerFour->setIcon(m_iconYes);
-        break;
 
       default:
         m_ui->m_btnAnswerOne->setIcon(m_iconNo);
         m_ui->m_btnAnswerTwo->setIcon(m_iconNo);
-        m_ui->m_btnAnswerThree->setIcon(m_iconNo);
-        m_ui->m_btnAnswerFour->setIcon(m_iconNo);
+   //     m_ui->m_btnAnswerThree->setIcon(m_iconNo);
+   //     m_ui->m_btnAnswerFour->setIcon(m_iconNo);
         break;
     }
   }
@@ -329,8 +295,6 @@ void QuizEditor::saveQuestion() {
   m_activeQuestion.setQuestion(m_ui->m_txtQuestion->toPlainText());
   m_activeQuestion.setAnswer(0, m_ui->m_txtAnswerOne->text());
   m_activeQuestion.setAnswer(1, m_ui->m_txtAnswerTwo->text());
-  m_activeQuestion.setAnswer(2, m_ui->m_txtAnswerThree->text());
-  m_activeQuestion.setAnswer(3, m_ui->m_txtAnswerFour->text());
 
   m_ui->m_listQuestions->currentItem()->setData(Qt::UserRole, QVariant::fromValue(m_activeQuestion));
   m_ui->m_listQuestions->currentItem()->setText(m_activeQuestion.question());
@@ -338,6 +302,7 @@ void QuizEditor::saveQuestion() {
   emit changed();
 }
 
+//Set the norms for various options
 void QuizEditor::moveQuestionUp() {
   int index = m_ui->m_listQuestions->currentRow();
 
@@ -479,22 +444,16 @@ QString QuizEditor::generateBundleData() {
     QDomElement question_element = source_document.createElement("question");
     QDomElement answer_one_element = source_document.createElement("option");
     QDomElement answer_two_element = source_document.createElement("option");
-    QDomElement answer_three_element = source_document.createElement("option");
-    QDomElement answer_four_element = source_document.createElement("option");
     QDomElement answer_number_element = source_document.createElement("answer");
 
     question_element.appendChild(source_document.createTextNode(question.question()));
     answer_one_element.appendChild(source_document.createTextNode(question.answerOne()));
     answer_two_element.appendChild(source_document.createTextNode(question.answerTwo()));
-    answer_three_element.appendChild(source_document.createTextNode(question.answerThree()));
-    answer_four_element.appendChild(source_document.createTextNode(question.answerFour()));
     answer_number_element.appendChild(source_document.createTextNode(QString::number(question.correctAnswer())));
 
     item_element.appendChild(question_element);
     item_element.appendChild(answer_one_element);
     item_element.appendChild(answer_two_element);
-    item_element.appendChild(answer_three_element);
-    item_element.appendChild(answer_four_element);
     item_element.appendChild(answer_number_element);
 
     data_element.appendChild(item_element);

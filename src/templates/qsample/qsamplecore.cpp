@@ -129,4 +129,3 @@ QsampleEditor *QsampleCore::qsampleEditor() {
 QsampleSimulator *QsampleCore::qsampleSimulator() {
   return static_cast<QsampleSimulator*>(m_simulator);
 }
-

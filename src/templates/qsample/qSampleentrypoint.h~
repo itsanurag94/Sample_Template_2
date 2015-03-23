@@ -28,48 +28,26 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef QSAMPLESIMULATOR_H
-#define QSAMPLESIMULATOR_H
+#ifndef QSAMPLEENTRYPOINT_H
+#define QSAMPLEENTRYPOINT_H
 
-#include "core/templatesimulator.h"
-
-#include "ui_qSamplesimulator.h"
+#include "core/templateentrypoint.h"
 
 
-namespace Ui {
-  class QSampleSimulator;
-}
+class TemplateFactory;
 
-class TemplateCore;
-class QLabel;
-class QPushButton;
-class QRadioButton;
-
-/// \brief Simulator for QSample template.
+/// \brief Entry point.
 /// \ingroup template-qSample
-class QSampleSimulator : public TemplateSimulator {
+class QSampleEntryPoint : public TemplateEntryPoint {
     Q_OBJECT
 
   public:
-    // Constructors and destructors.
-    explicit QSampleSimulator(TemplateCore *core, QWidget *parent = 0);
-    virtual ~QSampleSimulator();
+    // Constructors.
+    explicit QSampleEntryPoint(TemplateFactory *parent);
+    virtual ~QSampleEntryPoint();
 
-  public slots:
-    bool startSimulation();
-    bool stopSimulation();
-    bool goBack();
-
-  private slots:
-    void start();
-    void restart();
-    void exit();
-
-    void prepareSummary();
-    void questionSubmitted();
-
-  private:
-    Ui::QSampleSimulator *m_ui;
+    TemplateCore *createNewCore();
+    TemplateCore *loadCoreFromBundleData(const QString &raw_data);
 };
 
-#endif // QSampleSIMULATOR_H
+#endif // QSampleENTRYPOINT_H

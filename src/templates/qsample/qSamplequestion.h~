@@ -28,48 +28,41 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef QSAMPLESIMULATOR_H
-#define QSAMPLESIMULATOR_H
+#ifndef QSAMPLEQUESTION_H
+#define QSAMPLEQUESTION_H
 
-#include "core/templatesimulator.h"
+#include <QMetaType>
 
-#include "ui_qSamplesimulator.h"
+#include <QStringList>
 
 
-namespace Ui {
-  class QSampleSimulator;
-}
-
-class TemplateCore;
-class QLabel;
-class QPushButton;
-class QRadioButton;
-
-/// \brief Simulator for QSample template.
-/// \ingroup template-qSample
-class QSampleSimulator : public TemplateSimulator {
-    Q_OBJECT
-
+/// \brief Container for one question.
+/// \ingroup template-qsample
+class QsampleQuestion {
   public:
-    // Constructors and destructors.
-    explicit QSampleSimulator(TemplateCore *core, QWidget *parent = 0);
-    virtual ~QSampleSimulator();
+    explicit QsampleQuestion();
+    virtual ~QsampleQuestion();
 
-  public slots:
-    bool startSimulation();
-    bool stopSimulation();
-    bool goBack();
+    /// \brief Access to inde of correct answer.
+    /// \return Returns index of correct answer.
+    /// \warning Index is NOT numbered from 0. It is numbered from 1. So if first
+    /// answer is correct, then index of correct answer is ONE.
+    int correctAnswer() const;
+    void setCorrectAnswer(int correctAnswer);
 
-  private slots:
-    void start();
-    void restart();
-    void exit();
+    void setAnswer(int index, const QString &answer);
+    QString answerOne() const;
+    QString answerTwo() const;
 
-    void prepareSummary();
-    void questionSubmitted();
+    QString question() const;
+    void setQuestion(const QString &question);
 
   private:
-    Ui::QSampleSimulator *m_ui;
+    QString m_question;
+    QStringList m_answers;
+    int m_correctAnswer;
 };
 
-#endif // QSampleSIMULATOR_H
+Q_DECLARE_METATYPE(QsampleQuestion)
+
+#endif // QsampleQUESTION_H

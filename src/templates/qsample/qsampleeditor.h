@@ -41,10 +41,8 @@ class QsampleEditor : public TemplateEditor {
     QString authorName();
 
   private slots:
-    void selectPicture();
-    void loadPicture(const QString &picture_path);
     void updateQuestionCount();
-    void addQuestion(const QString &question, const QStringList &answers, int correct_answer, const QString& picture_path);
+    void addQuestion(const QString &question, const QStringList &answers, int correct_answer);
     void addQuestion();
     void loadQuestion(int index);
     void removeQuestion();
@@ -69,4 +67,3 @@ class QsampleEditor : public TemplateEditor {
 };
 
 #endif // QsampleEDITOR_H
-
