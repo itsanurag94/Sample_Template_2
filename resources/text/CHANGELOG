@@ -1,0 +1,130 @@
+<body>
+
+<center><h2>2.0.4</h2></center>
+
+Main:
+<ul>
+<li>This is final GSoC 2014 release.</li>
+<li>Maintenance release, speedups and optimizations.</li>
+</ul>
+
+Fixed:
+<ul>
+<li>Arrows on Quiz template are now correctly disabled on startup.</li>
+<li>Generated APK files now have correct custom names.</li>
+<li>Fixed issues #47, #45, #44, #43, #42, #41, #40, #33, #32, #30, #29 and many others.</li>
+<li>Some things changed in skins and user interface.</li>
+</ul>
+
+Added:
+<ul>
+<li>Application icon can now be specified when uploading XML bundle.</li>
+</ul>
+
+<hr/>
+<center><h2>2.0.3</h2></center>
+
+Main:
+<ul>
+<li>Code cleanups, stabilization.</li>
+<li>Experimental BuildmLearn Store functionality added.</li>
+</ul>
+
+Fixed:
+<ul>
+<li>Fixed bug #27.</li>
+<li>Prompt to save unsaved project is now correctly displayed if application quits via "Quit" menu item.</li>
+</ul>
+
+Added:
+<ul>
+</ul>
+
+<hr/>
+<center><h2>2.0.2</h2></center>
+
+Main:
+<ul>
+<li>Second GSoC-related toolkit release.</li>
+<li>This is maintenance release which is considered to be pre-alpha quality.</li>
+<li>Added 4th template and code cleanups.</li>
+</ul>
+
+Fixed:
+<ul>
+<li>"Save project" action is now disabled when project is loaded from XML bundle file.</li>
+<li>Text box in Quiz editor with number of added questions is now read only.</li>
+<li>Some memory leaks, UX bugs and other tweaking was made.</li>
+<li>Removed EXE resources for OS/2.</li>
+<li>Fixed XML bundle saving failures under some conditions.</li>
+</ul>
+
+Added:
+<ul>
+<li>Added more documentation.</li>
+<li>Added some contents to application help dialog.</li>
+<li>Added experimental version of Learn Spellings template.</li>
+<li>Added phonon4 sound support.</li>
+</ul>
+
+<hr/>
+<center><h2>2.0.1</h2></center>
+
+Main:
+<ul>
+<li>First GSoC-related toolkit release.</li>
+<li>THIS IS PRE-ALPHA RELEASE WHICH IS MEANT TO BE USED ONLY FOR TESTING!!!</li>
+<li>Initial ana massive code reworking.</li>
+<li>Mac OS X source code compilation & bundle fixes by Petr Vaněk &lt;petr@yarpen.cz&gt;. This is not well-tested so far.</li>
+</ul>
+
+Fixed:
+<ul>
+<li>Fixed bugs #20, #23, #16, #15, #7, #5, #6, #3 and many others previously reported errors and problems.</li>
+</ul>
+
+Added:
+<ul>
+<li>Added CMake-based compilation scripts and related stuff.</li>
+<li>Added support for application-wide dynamic keyboard shortcuts (check settings).</li>
+<li>Added custom message box -> better API.</li>
+<li>New "about" and "check-for-updates" dialogs.</li>
+<li>New application-wide settings, both backend and frontend GUI.</li>
+<li>Added ability to check for updates, manually or when application starts.</li>
+<li>Added OBS service for generating packages for major Linux distributions.</li>
+<li>Added new custom widgets - labels, tool buttons.</li>
+<li>Added new tray icon which allows to do some basic operations and hide main window on supported platforms.</li>
+<li>Added better handling of debugging console messages.</li>
+<li>Added application-wide icon handling mechanism.</li>
+<li>Added support for application localization, both backend and frontend GUI.</li>
+<li>Added basic support for proxy server settings + API for downloading files.</li>
+<li>Replaced old templates with new ones which include much better logic.</li>
+</ul>
+
+<hr/>
+<center><h2>2.0.0</h2></center>
+
+Main:
+<ul>
+<li>Last pre-GSoC release.</li>
+</ul>
+
+We are working on some new templates for the BuildmLearn Toolkit and refining the existing templates; we thought it would be good to provide an intermediate update with the refined version of mobile templates.
+<br><br>
+Today, we are pleased to announce the release of the BuildmLearn Toolkit 2.0.0. The new version of the toolkit contains refined mobile application templates - with better, consistent UI across templates and android versions. Our target is to support the toolkit for android 2.3+ versions. The templates have several enhancements (for e.g. improved animation for Flash cards) and several bug fixes. We have also now tested and optimized the mobile templates for use on larger screen devices (tablets, phablets).
+<br><br>
+You can download the latest version of the toolkit here. Please post your feedback and suggestions to our Google Group.
+
+<hr/>
+<center><h2>2.0.0</h2></center>
+
+Main:
+<ul>
+<li>Added options to save and load applications. Many teachers asked us to add options to save the application that they were building so that they can work on it over a period of time. We prioritized this request and now teachers can save their 'work in progress' apps and work on them at a later time. The app files are saved with an extension '.buildmlearn'.</li>
+<li>New template for flashcards introduced. This template allows to create apps as a collection of flashcards. The simulator is also available to preview apps before generating the apps for this template.This idea for this template was contributed on our Google group by Ashmita Nigam (thanks!).</li>
+<li>Added toolbar for easy access of important options. This was one of the tasks for our Season of BuildmLearn program and now it's integrated into the released.</li>
+<li>Bug fixes for the existing templates and overall improvement in the usability of the Toolkit.
+You can download the latest version of the toolkit here. Please post your feedback and suggestions to our Google group.</li>
+</ul>
+
+</body>

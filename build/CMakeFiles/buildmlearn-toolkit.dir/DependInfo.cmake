@@ -1,0 +1,118 @@
+# The set of languages for which implicit dependencies are needed:
+SET(CMAKE_DEPENDS_LANGUAGES
+  "CXX"
+  )
+# The set of files for implicit dependencies of each language:
+SET(CMAKE_DEPENDS_CHECK_CXX
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/build/buildmlearn-toolkit_automoc.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/buildmlearn-toolkit_automoc.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/core/templatecore.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/core/templatecore.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/core/templateeditor.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/core/templateeditor.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/core/templateentrypoint.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/core/templateentrypoint.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/core/templatefactory.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/core/templatefactory.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/core/templategenerator.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/core/templategenerator.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/core/templatesimulator.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/core/templatesimulator.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/dynamic-shortcuts/dynamicshortcuts.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/dynamic-shortcuts/dynamicshortcuts.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/dynamic-shortcuts/dynamicshortcutswidget.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/dynamic-shortcuts/dynamicshortcutswidget.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/dynamic-shortcuts/shortcutbutton.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/dynamic-shortcuts/shortcutbutton.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/dynamic-shortcuts/shortcutcatcher.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/dynamic-shortcuts/shortcutcatcher.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/gui/custommessagebox.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/gui/custommessagebox.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/gui/formabout.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/gui/formabout.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/gui/formhelp.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/gui/formhelp.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/gui/formmain.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/gui/formmain.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/gui/formnewproject.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/gui/formnewproject.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/gui/formsettings.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/gui/formsettings.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/gui/formsimulator.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/gui/formsimulator.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/gui/formupdate.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/gui/formupdate.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/gui/formuploadbundle.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/gui/formuploadbundle.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/gui/labelwithstatus.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/gui/labelwithstatus.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/gui/lineeditwithstatus.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/gui/lineeditwithstatus.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/gui/maxlengthtextedit.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/gui/maxlengthtextedit.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/gui/plaintoolbutton.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/gui/plaintoolbutton.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/gui/systemtrayicon.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/gui/systemtrayicon.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/gui/widgetwithstatus.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/gui/widgetwithstatus.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/main.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/main.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/miscellaneous/application.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/miscellaneous/application.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/miscellaneous/debugging.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/miscellaneous/debugging.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/miscellaneous/iconfactory.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/miscellaneous/iconfactory.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/miscellaneous/iofactory.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/miscellaneous/iofactory.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/miscellaneous/localization.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/miscellaneous/localization.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/miscellaneous/settings.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/miscellaneous/settings.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/miscellaneous/skinfactory.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/miscellaneous/skinfactory.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/miscellaneous/storefactory.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/miscellaneous/storefactory.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/miscellaneous/systemfactory.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/miscellaneous/systemfactory.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/miscellaneous/textfactory.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/miscellaneous/textfactory.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/network-web/basenetworkaccessmanager.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/network-web/basenetworkaccessmanager.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/network-web/downloader.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/network-web/downloader.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/network-web/networkfactory.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/network-web/networkfactory.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/network-web/silentnetworkaccessmanager.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/network-web/silentnetworkaccessmanager.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/network-web/webfactory.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/network-web/webfactory.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/templates/flashcard/flashcardcore.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/flashcard/flashcardcore.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/templates/flashcard/flashcardeditor.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/flashcard/flashcardeditor.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/templates/flashcard/flashcardentrypoint.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/flashcard/flashcardentrypoint.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/templates/flashcard/flashcarditem.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/flashcard/flashcarditem.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/templates/flashcard/flashcardquestion.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/flashcard/flashcardquestion.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/templates/flashcard/flashcardsimulator.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/flashcard/flashcardsimulator.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/templates/learnspellings/learnspellingscore.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/learnspellings/learnspellingscore.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/templates/learnspellings/learnspellingseditor.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/learnspellings/learnspellingseditor.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/templates/learnspellings/learnspellingsentrypoint.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/learnspellings/learnspellingsentrypoint.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/templates/learnspellings/learnspellingsitem.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/learnspellings/learnspellingsitem.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/templates/learnspellings/learnspellingssimulator.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/learnspellings/learnspellingssimulator.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/templates/mlearning/basicmlearningcore.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/mlearning/basicmlearningcore.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/templates/mlearning/basicmlearningeditor.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/mlearning/basicmlearningeditor.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/templates/mlearning/basicmlearningentrypoint.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/mlearning/basicmlearningentrypoint.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/templates/mlearning/basicmlearningitem.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/mlearning/basicmlearningitem.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/templates/mlearning/basicmlearningsimulator.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/mlearning/basicmlearningsimulator.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/templates/qsample/qsamplecore.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/qsample/qsamplecore.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/templates/qsample/qsampleeditor.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/qsample/qsampleeditor.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/templates/qsample/qsampleentrypoint.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/qsample/qsampleentrypoint.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/templates/qsample/qsampleitem.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/qsample/qsampleitem.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/templates/qsample/qsamplequestion.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/qsample/qsamplequestion.cpp.o"
+  "/home/anurag/Downloads/BuildmLearn-Toolkit/src/templates/qsample/qsamplesimulator.cpp" "/home/anurag/Downloads/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/qsample/qsamplesimulator.cpp.o"
+  )
+SET(CMAKE_CXX_COMPILER_ID "GNU")
+
+# Preprocessor definitions for this target.
+SET(CMAKE_TARGET_DEFINITIONS
+  "QT_CORE_LIB"
+  "QT_GUI_LIB"
+  "QT_MULTIMEDIA_LIB"
+  "QT_NETWORK_LIB"
+  "QT_NO_DEBUG"
+  "QT_SQL_LIB"
+  "QT_USE_FAST_CONCATENATION"
+  "QT_USE_FAST_OPERATOR_PLUS"
+  "QT_USE_QSTRINGBUILDER"
+  "QT_WIDGETS_LIB"
+  "QT_XML_LIB"
+  "UNICODE"
+  "_UNICODE"
+  )
+
+# Targets to which this target links.
+SET(CMAKE_TARGET_LINKED_INFO_FILES
+  )
+
+# The include file search paths:
+SET(CMAKE_C_TARGET_INCLUDE_PATH
+  "."
+  ".."
+  "../src"
+  "../src/core"
+  "../src/gui"
+  "../src/miscellaneous"
+  "../src/network-web"
+  "../src/dynamic-shortcuts"
+  "src"
+  "/usr/include/qt5"
+  "/usr/include/qt5/QtCore"
+  "/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64"
+  "/usr/include/qt5/QtWidgets"
+  "/usr/include/qt5/QtGui"
+  "/usr/include/qt5/QtSql"
+  "/usr/include/qt5/QtNetwork"
+  "/usr/include/qt5/QtXml"
+  "/usr/include/qt5/QtMultimedia"
+  )
+SET(CMAKE_CXX_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
+SET(CMAKE_Fortran_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
+SET(CMAKE_ASM_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
